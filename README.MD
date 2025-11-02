@@ -1,3 +1,12 @@
+<p align="center">
+  <img
+    alt="Gspace Logo"
+    src="https://repository-images.githubusercontent.com/1087982749/64312ac5-7332-4e2f-b8f4-e59f1e039656"
+    width="250"
+    style="border-radius: 20px;"
+  />
+</p>
+
 # gspace 🚀
 
 *A comprehensive Python SDK for Google Workspace APIs (Calendar, Gmail, Drive, Docs, Sheets, and more).*
