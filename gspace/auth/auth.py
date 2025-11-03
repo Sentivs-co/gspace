@@ -199,7 +199,7 @@ class AuthManager:
         Check if the credentials are authenticated.
 
         Returns:
-            "authenticated" if authenticated, "invalid credentials" otherwise
+            "authenticated" if authenticated, "invalid credentials" otherwises
         """
         status = self.credentials.valid if self.credentials else False
         if status:
