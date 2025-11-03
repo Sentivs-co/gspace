@@ -368,7 +368,11 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+This project uses code from the [google-api-python-client](https://github.com/googleapis/google-api-python-client),
+which is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
 
 ---
 

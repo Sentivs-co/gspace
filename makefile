@@ -24,8 +24,13 @@ publish:
 clean:
 	$(RM) -rf dist build
 	$(RM) -rf **/__pycache__ # remove all __pycache__ directories
+	$(RM) -rf **/**/__pycache__ # remove all __pycache__ directories
 	$(RM) -rf .pytest_cache
 	$(RM) -rf .ruff_cache
 	$(RM) -rf .mypy_cache
 	$(RM) -rf .pytest_cache
 	$(RM) -rf gspace.egg-info
+
+pycache-clean:
+	$(RM) -rf **/__pycache__ # remove all __pycache__ directories
+	$(RM) -rf **/**/__pycache__ # remove all __pycache__ directories
