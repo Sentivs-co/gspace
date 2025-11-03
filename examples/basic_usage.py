@@ -34,6 +34,7 @@ def main():
                 "drive",  # Drive access
                 "sheets",  # Sheets access
                 "docs",  # Docs access
+                "userinfo",  # UserInfo access
             ],
         )
 
@@ -42,6 +43,7 @@ def main():
 
         # Get user information
         user_info = gspace.get_user_info()
+        print(f"Id: {user_info.get('id', 'Unknown')}")
         print(f"👤 User: {user_info.get('name', 'Unknown')}")
         print(f"📧 Email: {user_info.get('email', 'Unknown')}")
 

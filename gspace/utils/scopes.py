@@ -47,6 +47,11 @@ class GoogleScopes:
     KEEP = "https://www.googleapis.com/auth/keep"
     KEEP_READONLY = "https://www.googleapis.com/auth/keep.readonly"
 
+    # UserInfo API scopes
+    USERINFO_EMAIL = "https://www.googleapis.com/auth/userinfo.email"
+    USERINFO_PROFILE = "https://www.googleapis.com/auth/userinfo.profile"
+    OPENID = "openid"
+
     @classmethod
     def get_service_scopes(cls, service: str, access_level: str = "full") -> list[str]:
         """
@@ -94,6 +99,9 @@ class GoogleScopes:
             },
             "tasks": {"readonly": [cls.TASKS_READONLY], "full": [cls.TASKS]},
             "keep": {"readonly": [cls.KEEP_READONLY], "full": [cls.KEEP]},
+            "userinfo": {
+                "readonly": [cls.USERINFO_EMAIL, cls.USERINFO_PROFILE, cls.OPENID],
+            },
         }
 
         if service not in scope_map:
@@ -140,6 +148,7 @@ class GoogleScopes:
             ],
             "tasks": [cls.TASKS_READONLY, cls.TASKS],
             "keep": [cls.KEEP_READONLY, cls.KEEP],
+            "userinfo": [cls.USERINFO_EMAIL, cls.USERINFO_PROFILE, cls.OPENID],
         }
 
     @classmethod

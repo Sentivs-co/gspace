@@ -54,7 +54,7 @@ class GSpace:
         Returns:
             GSpace client instance
         """
-        return cls(credentials_file, scopes, auth_type="OAuth2")
+        return cls(credentials=credentials_file, auth_type="OAuth2", scopes=scopes)
 
     @classmethod
     def from_service_account(cls, service_account_file: str | Path, scopes: list[str]):
@@ -68,7 +68,9 @@ class GSpace:
         Returns:
             GSpace client instance
         """
-        return cls(service_account_file, scopes, auth_type="service_account")
+        return cls(
+            credentials=service_account_file, auth_type="service_account", scopes=scopes
+        )
 
     def calendar(self) -> Calendar:
         """
@@ -130,12 +132,12 @@ class GSpace:
             self.services["docs"] = Docs(self.auth)
         return self.services["docs"]
 
-    def is_authenticated(self) -> bool:
+    def is_authenticated(self) -> str:
         """
         Check if the client is properly authenticated.
 
         Returns:
-            True if authenticated, False otherwise
+            "authenticated" if authenticated, "invalid credentials" otherwise
         """
         return self.auth.is_authenticated()
 
@@ -224,7 +226,7 @@ class GSpace:
             self.services["docs"] = Docs(self.auth)
         return self.services["docs"]
 
-    async def is_authenticated_async(self) -> bool:
+    async def is_authenticated_async(self) -> str:
         """
         Check if the client is properly authenticated asynchronously.
 
