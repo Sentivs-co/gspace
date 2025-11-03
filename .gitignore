@@ -8,10 +8,10 @@ __pycache__/
 **.DS_Store
 cookbook
 .cursorignore
-makefile
 image
 PUBLISHING.md
 .gitignore
+test.ipynb
 
 # Distribution / packaging
 .Python

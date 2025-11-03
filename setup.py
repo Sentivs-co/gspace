@@ -11,7 +11,6 @@ setup(
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
-        "requests>=2.32.5,<3.0.0",
         "google-api-python-client>=2.179.0,<3.0.0",
         "google-auth-httplib2>=0.2.0,<0.3.0",
         "google-auth-oauthlib>=1.2.2,<2.0.0",

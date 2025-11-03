@@ -135,6 +135,9 @@ class AuthManager:
                 GoogleScopes.CALENDAR_READONLY,
                 GoogleScopes.GMAIL_READONLY,
                 GoogleScopes.DRIVE_READONLY,
+                GoogleScopes.USERINFO_EMAIL,
+                GoogleScopes.USERINFO_PROFILE,
+                GoogleScopes.OPENID,
             ]
 
         mapped_scopes = []
@@ -190,3 +193,28 @@ class AuthManager:
         except Exception as e:
             self.logger.error(f"Failed to build {api_name} service: {e}")
             raise
+
+    def is_authenticated(self) -> str:
+        """
+        Check if the credentials are authenticated.
+
+        Returns:
+            "authenticated" if authenticated, "invalid credentials" otherwises
+        """
+        status = self.credentials.valid if self.credentials else False
+        if status:
+            return "authenticated"
+        else:
+            return "invalid credentials"
+
+    def get_user_info(self) -> dict:
+        """
+        Get information about the authenticated user.
+
+        Returns:
+            User information dictionary
+        """
+        oauth2 = build("oauth2", "v2", credentials=self.credentials)
+        user_info = oauth2.userinfo().get().execute()
+        del oauth2
+        return user_info

@@ -384,20 +384,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - 📧 **Email**: [dev@sentivs.com](mailto:dev@sentivs.com)
 - 🐛 **Issues**: [GitHub Issues](https://github.com/Sentivs-co/gspace/issues)
-- 📖 **Documentation**: **Comming SOON**
-- 💬 **Discussions**: **Comming SOON**
----
-
-## 🔄 Changelog
-
-### v0.1.0 (Current)
-- ✨ Initial release
-- 🔐 OAuth2 and Service Account authentication
-- 📅 Calendar API support
-- 📧 Gmail API support
-- 💾 Drive API support
-- 📊 Sheets API support
-- 📝 Docs API support
-- 📝 Comprehensive logging
-- 🎯 Type hints throughout
-- 📚 Extensive documentation and examples
+- 📖 **Documentation**: [Docs](https://gspace.sentivs.com/)
+- 💬 **Discussions**: [Chat](https://github.com/Sentivs-co/gspace/discussions)
