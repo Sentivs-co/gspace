@@ -2,6 +2,7 @@ import base64
 import hashlib
 import json
 import os
+from abc import ABC, abstractmethod
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -13,84 +14,24 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from gspace.utils.logger import get_logger
 
 
-class TokenStorageBackend:
+class TokenStorageBackend(ABC):
     """Abstract base class for token storage backends."""
 
+    @abstractmethod
     def save_tokens(self, user_id: str, tokens: dict[str, Any]) -> bool:
-        """Save tokens for a user."""
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def load_tokens(self, user_id: str) -> dict[str, Any] | None:
-        """Load tokens for a user."""
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def delete_tokens(self, user_id: str) -> bool:
-        """Delete tokens for a user."""
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def list_users(self) -> list:
-        """List all users with stored tokens."""
-        raise NotImplementedError
-
-
-class FileTokenBackend(TokenStorageBackend):
-    """File-based token storage backend."""
-
-    def __init__(self, storage_dir: str = ".gspaces_tokens"):
-        self.storage_dir = Path(storage_dir)
-        self.storage_dir.mkdir(exist_ok=True)
-        self.logger = get_logger("gspace.token_manager.file")
-
-    def save_tokens(self, user_id: str, tokens: dict[str, Any]) -> bool:
-        """Save tokens to a file."""
-        try:
-            file_path = self.storage_dir / f"{user_id}.json"
-            with open(file_path, "w") as f:
-                json.dump(tokens, f, indent=2)
-            self.logger.info(f"Tokens saved for user {user_id}")
-            return True
-        except Exception as e:
-            self.logger.error(f"Failed to save tokens for user {user_id}: {e}")
-            return False
-
-    def load_tokens(self, user_id: str) -> dict[str, Any] | None:
-        """Load tokens from a file."""
-        try:
-            file_path = self.storage_dir / f"{user_id}.json"
-            if not file_path.exists():
-                return None
-
-            with open(file_path) as f:
-                tokens = json.load(f)
-            self.logger.info(f"Tokens loaded for user {user_id}")
-            return tokens
-        except Exception as e:
-            self.logger.error(f"Failed to load tokens for user {user_id}: {e}")
-            return None
-
-    def delete_tokens(self, user_id: str) -> bool:
-        """Delete tokens file for a user."""
-        try:
-            file_path = self.storage_dir / f"{user_id}.json"
-            if file_path.exists():
-                file_path.unlink()
-                self.logger.info(f"Tokens deleted for user {user_id}")
-            return True
-        except Exception as e:
-            self.logger.error(f"Failed to delete tokens for user {user_id}: {e}")
-            return False
-
-    def list_users(self) -> list:
-        """List all users with stored tokens."""
-        try:
-            users = []
-            for file_path in self.storage_dir.glob("*.json"):
-                user_id = file_path.stem
-                users.append(user_id)
-            return users
-        except Exception as e:
-            self.logger.error(f"Failed to list users: {e}")
-            return []
+        pass
 
 
 class EncryptedTokenBackend(TokenStorageBackend):
